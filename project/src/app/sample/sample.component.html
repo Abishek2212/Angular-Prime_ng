@@ -1,0 +1,22 @@
+<p-button (click)="showDialog()" icon="pi pi-external-link" label="Show"></p-button>
+<p-dialog header="Send Email" [(visible)]="visible" [style]="{width: '50vw'}" (onHide)="onhide()">
+        
+        <label for="From">From</label>
+        <input type="text" pInputText [(ngModel)]="From"/>
+
+        <label for="To">To:</label>
+        <input type="text" pInputText [(ngModel)]="To" #to="ngModel" required/>
+
+        <small class="block p-error" *ngIf="to.invalid && to.dirty"> To is required <br></small>
+
+        <label for="Subject">Subject</label>
+        <input type="text" pInputText [(ngModel)]="Subject" />
+
+        <label for="Body">Body</label>
+        <textarea rows="5" cols="30" pInputTextarea [(ngModel)]="Body" [autoResize]="true"></textarea><br>
+
+        <p-checkbox [(ngModel)]="checked" [binary]="true" inputId="binary" label="Include Original File"></p-checkbox><br>
+
+        <p-button (onClick)="logInputValue()" [disabled]="!to.valid" label="Send" style="margin-right:10px"></p-button>
+        <p-button (onClick)="onhide()" label="Cancel"></p-button>
+</p-dialog>
